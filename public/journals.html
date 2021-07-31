@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,22 +8,76 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/index.css">
 
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+            <a class="navbar-item" href="index.html" style="color:#228B22">
+                Home
+            </a>
+
+            <a class="navbar-item" href="journals.html" style="color:#228B22">
+                Journals
+            </a>
+        </div>
+    </div>
+    </nav>
+
+
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        div {
+            text-align: center;
+        }
+
+        ul {
+            background-color: maroon;
+        }
+
+        li {
+            float: left;
+        }
+
+        a {
+            display: block;
+            padding: 8px;
+            background-color: beige;
+        }
+    </style>
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Journal</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/index.css">
+
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/8.3.1/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
     <script defer src="/__/firebase/8.3.1/firebase-auth.js"></script>
     <script defer src="/__/firebase/8.3.1/firebase-database.js"></script>
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    <script src="scripts/SignIn.js"></script>    
 </head>
-<body>
+
+
+<body style="background-color:#DADD98">
     <nav>
         <button class="nav-button" id="logout">
-
+            Logout
         </button>
-        <button class="nav-button" id="darkMode">
-
+        <button class="nav-button" id="lightMode">
+            Light Mode
         </button>
     </nav>
+
     <main>
         <div class="text-content">
             <h1>Good morning<span id="name"></span>!</h1>
@@ -54,5 +109,7 @@
             </button>
         </div>
     </main>
+
 </body>
+
 </html>
