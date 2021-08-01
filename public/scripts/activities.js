@@ -21,8 +21,12 @@ function removeOne() {
     }
     if (numOfSticks > 0) {
         turnCount.innerHTML = "Player " + turn + " it is your turn";
+    } else {
+        turnCount.innerHTML = "";
+        onestick.innerHTML.disabled = "disabled";
+        twostick.innerHTML.disabled = "disabled";
+        threestick.innerHTML.disabled = disabled;
     }
-    turnCount.innerHTML = "Player " + turn + " it is your turn";
 
 }
 function removeTwo() {
@@ -37,7 +41,10 @@ function removeTwo() {
     }
     if (numOfSticks > 0) {
         turnCount.innerHTML = "Player " + turn + " it is your turn";
+    } else {
+        turnCount.innerHTML = "";
     }
+    
 }
 function removeThree() {
     numOfSticks -= 3;
@@ -49,5 +56,19 @@ function removeThree() {
     if (numOfSticks <= 0) {
         stickCount.innerHTML = "Player " + turn + " wins!!!";
     }
-    turnCount.innerHTML = "Player " + turn + " it is your turn";
+    if (numOfSticks > 0) {
+        turnCount.innerHTML = "Player " + turn + " it is your turn";
+    } else {
+        turnCount.innerHTML = "";
+    }
+}
+function resetGame() {
+    numOfSticks = 10;
+    var stickCount = document.querySelector("#stickCount");
+    var playerTurn = document.querySelector("#turnCount");
+    stickCount.innerHTML = "There are <b>" + numOfSticks + "</b> sticks in the pile currently";
+    turn = 1;
+    if (numOfSticks > 0) {
+        turnCount.innerHTML = "Player " + turn + " it is your turn";
+    }
 }
