@@ -1,0 +1,84 @@
+<html>
+
+<head>
+    <div>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                    data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: black;
+
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover:not(.active) {
+            background-color: white;
+        }
+
+        .active {
+            background-color: #DADD98;
+        }
+    </style>
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Journal</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/index.css">
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/8.3.1/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/8.3.1/firebase-auth.js"></script>
+    <script defer src="/__/firebase/8.3.1/firebase-database.js"></script>
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+</head>
+
+<body style="background-color:#DADD98">
+    <script src="scripts/SignIn.js"></script>
+    <script src="scripts/activities.js"></script>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="journals.html">New Journal</a></li>
+        <li><a href="write.html">New Draft</a></li>
+        <li><a href="activities.html">Activities</a></li>
+        <li><a href="dark-mode.html">Switch to Dark Mode</a></li>
+    </ul>
+    <h1>Activities</h1>
+
+    <h2>Mouse Stress Reliever😀</h2>
+    <main>
+        <button style="border-radius: 12px;background-color:red;" onClick="onClick()">Click me</button>
+        <h4>Clicks: <a id="clicks">0</a></h4>
+    </main>
+</body>
+
+</html>
