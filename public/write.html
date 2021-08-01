@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Journal – Journals</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/index.css">
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: black;
+
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover:not(.active) {
+            background-color: white;
+        }
+
+        .active {
+            background-color: #DADD98;
+        }
+    </style>
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Journal</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/index.css">
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/8.3.1/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/8.3.1/firebase-auth.js"></script>
+    <script defer src="/__/firebase/8.3.1/firebase-database.js"></script>
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    <script src="scripts/SignIn.js"></script>
+</head>
+
+
+<body style="background-color:#DADD98;margin:20px;padding:20px;">
+    <style>
+        .nav-button {
+            background-color: royalblue;
+            /* Green */
+            border: black;
+            border-radius: 10px;
+            border-width: 5px;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+    </style>
+    <script src="scripts/SignIn.js"></script>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="journals.html">New Journal</a></li>
+        <li><a href="write.html">New Draft</a></li>
+        <li><a href="activities.html">Activities</a></li>
+        <li><a href="dark-mode.html">Switch to Dark Mode</a></li>
+    </ul>
+    <nav>
+        <button class="nav-button" id="logout">
+            Logout
+        </button>
+        <button class="nav-button" id="lightMode">
+            Light Mode
+        </button>
+    </nav>
+
+    <main>
+        <div class="text-content">
+            <h1>Good morning<span id="name"></span>!</h1>
+            <h3>What's on your mind?</h3>
+        </div>
+        <div class="journals" id="journals">
+            <div class="journal">
+                <div class="bookmark"></div>
+                <div class="tag">
+                    <h2 class="title"></h2>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                </div>
+            </div>
+            <div class="journal">
+                <div class="bookmark"></div>
+                <div class="tag">
+                    <h2 class="title"></h2>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                </div>
+            </div>
+            <button class="create-button" id="newJournal">
+                New Journal
+            </button>
+        </div>
+    </main>
+
+</body>
+
+</html>
