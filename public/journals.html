@@ -7,49 +7,34 @@
     <title>Mental Health Journal – Journals</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/index.css">
-
-    <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-start">
-            <a class="navbar-item" href="index.html" style="color:#228B22">
-                Home
-            </a>
-
-            <a class="navbar-item" href="journals.html" style="color:#228B22">
-                Journals
-            </a>
-        </div>
-    </div>
-    </nav>
-
-
     <style>
-        h1 {
-            text-align: center;
-        }
-
-        p {
-            text-align: center;
-        }
-
-        div {
-            text-align: center;
-        }
-
         ul {
-            background-color: maroon;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: black;
+            
         }
 
         li {
-            border-right: 1px solid #bbb;
             float: left;
         }
 
-        a {
+        li a {
             display: block;
-            padding: 8px;
-            background-color: beige;
-            color:white;
-            
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover:not(.active) {
+            background-color: white;
+        }
+
+        .active {
+            background-color: #DADD98;
         }
     </style>
 
@@ -71,7 +56,15 @@
 </head>
 
 
-<body style="background-color:#DADD98">
+<body style="background-color:#DADD98;margin:20px;padding:20px;">
+    <script src="scripts/SignIn.js"></script>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="journals.html">New Journal</a></li>
+        <li><a href="write.html">New Draft</a></li>
+        <li><a href="activities.html">Activities</a></li>
+        <li><a href="dark-mode.html">Switch to Dark Mode</a></li>
+    </ul>
     <nav>
         <button class="nav-button" id="logout">
             Logout
