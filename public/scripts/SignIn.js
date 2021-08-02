@@ -4,7 +4,7 @@ function signIn() {
         var credential = result.credential;
         var token = credential.accessToken;
         var user = result.user;
-        window.location = './jounals.html';
+        window.location = './journals.html';
     }).catch(function(error) {
         var errorCode = error.code;
         var errorMessage = error.message;
