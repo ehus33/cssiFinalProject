@@ -13,3 +13,5 @@ function signIn() {
         console.log(errorCode + ": " + errorMessage + " (email: " + email + ", credential: " + credential + ")");
     });
 }
+
+document.getElementById('signIn').addEventListener('click', signIn);
