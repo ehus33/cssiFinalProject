@@ -83,6 +83,32 @@
             display: inline-block;
             font-size: 16px;
         }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover:not(.active) {
+            background-color: white;
+        }
+
+        .active {
+            background-color: #DADD98;
+        }
     </style>
     <script src="scripts/SignIn.js"></script>
     <ul>
