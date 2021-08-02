@@ -1,3 +1,11 @@
+window.onload = (event) => {
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            window.location = 'journals.html';
+        }
+    });
+};
+
 function signIn() {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider).then(function(result) {
