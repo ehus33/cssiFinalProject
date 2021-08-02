@@ -24,10 +24,10 @@ function darkModeClassToggle() {
 
 function toggleThemeColorMeta() {
     if (document.cookie.split(';').some((item) => item.includes('colorToggle=1'))) {
-      document.querySelector('meta[media="(prefers-color-scheme: dark)"]').setAttribute("content", '#000')
-      document.querySelector('meta[media="(prefers-color-scheme: light)"]').setAttribute("content", '#fff')
+      document.querySelector('meta[media="(prefers-color-scheme: dark)"]').setAttribute("content", '#F2F2F2')
+      document.querySelector('meta[media="(prefers-color-scheme: light)"]').setAttribute("content", '#1A1A1A')
     } else {
-      document.querySelector('meta[media="(prefers-color-scheme: dark)"]').setAttribute("content", '#fff')
-      document.querySelector('meta[media="(prefers-color-scheme: light)"]').setAttribute("content", '#000')
+      document.querySelector('meta[media="(prefers-color-scheme: dark)"]').setAttribute("content", '#1A1A1A')
+      document.querySelector('meta[media="(prefers-color-scheme: light)"]').setAttribute("content", '#F2F2F2')
     }
 }
