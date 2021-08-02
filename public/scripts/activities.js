@@ -1,7 +1,10 @@
 var clicks = 0;
+
 const onestick = document.querySelector("#one");
 const twostick = document.querySelector("#two");
 const threestick = document.querySelector("#three");
+
+
 let numOfSticks = 10;
 turn = 1;
 function onClick() {
@@ -44,7 +47,7 @@ function removeTwo() {
     } else {
         turnCount.innerHTML = "";
     }
-    
+
 }
 function removeThree() {
     numOfSticks -= 3;
