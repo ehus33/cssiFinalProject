@@ -1,0 +1,83 @@
+:root {
+    --background-primary: #fff;
+    --background-secondary: #F2F2F2;
+
+    --text-primary: #000;
+}
+
+html.dark {
+    --background-primary: #000;
+    --background-secondary: #1A1A1A;
+
+    --text-primary: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-primary: #000;
+        --background-secondary: #1A1A1A;
+    
+        --text-primary: #fff;
+    }
+
+    html.dark {
+        --background-primary: #fff;
+        --background-secondary: #F2F2F2;
+    
+        --text-primary: #000;
+    }
+}
+
+html {
+    font-family: 'Lato', sans-serif;
+    background-color: var(--background-primary);
+    color: var(--text-primary);
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 4.2rem;
+    margin: 0 0 1.2rem 0;
+}
+
+button {
+    background-color: var(--background-secondary);
+    color: var(--text-primary);
+    border: none;
+    padding: 16px 32px;
+    font-size: 24px;
+    border-radius: 8px;
+    font-family: 'Lato', sans-serif;
+    cursor: pointer;
+}
+
+nav, .text-content {
+    margin: 0 clamp(12px, 4vw, 140px);
+}
+
+nav {
+    margin-top: 32px;
+}
+
+.text-content {
+    margin-top: max(16px, calc(50vh - 160px));
+}
+
+.nav-button {
+    padding: 12px;
+    margin-right: 24px;
+    border-radius: 100px;
+    box-sizing: content-box;
+    height: 24px;
+    width: 24px;
+    font-size: 0;
+}
+
+.nav-button:last-of-type {
+  margin: 0;
+}
+
+.darkModeIcon {
+    height: 24px;
+    width: 24px;
+}
