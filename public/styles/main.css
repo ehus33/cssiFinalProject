@@ -3,9 +3,9 @@
     --background-secondary: #F2F2F2;
 
     --text-primary: #000;
+    --text-secondary: #252525;
 
     --line: #b9b9b9;
-    --paper: #FAFAFA;
 }
 
 html.dark {
@@ -13,9 +13,9 @@ html.dark {
     --background-secondary: #1A1A1A;
 
     --text-primary: #fff;
+    --text-secondary: #cecece;
 
-    --line: #4D4D4D;
-    --paper: #1F1F1F;
+    --line: #9c9c9c;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,9 +24,9 @@ html.dark {
         --background-secondary: #1A1A1A;
     
         --text-primary: #fff;
+        --text-secondary: #cecece;
 
-        --line: #4D4D4D;
-        --paper: #1F1F1F;
+        --line: #9c9c9c;
     }
 
     html.dark {
@@ -34,9 +34,9 @@ html.dark {
         --background-secondary: #F2F2F2;
     
         --text-primary: #000;
+        --text-secondary: #252525;
 
         --line: #b9b9b9;
-        --paper: #FAFAFA;
     }
 }
 

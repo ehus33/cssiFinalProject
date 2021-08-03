@@ -14,6 +14,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display&display=swap" rel="stylesheet">
 
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F2F2F2">
+	<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1A1A1A">
+
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/8.3.1/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
@@ -35,19 +38,32 @@
                 Change Appearance
             </button>
         </nav>
-        <h2 class="prompt" id="prompt">Describe a situation in which you helped someone else. How do you think it made them feel? How did it make you feel?</h2>
+        <div id="quoteGroup" class="quoteGroup">
+            <span class="reloadWrapper" id="reload">
+                <div class="reloadBackground">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="reloadIcon" viewBox="0 0 512 512"><path fill="none" stroke="var(--text-secondary)" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M400,148l-21.12-24.57A191.43,191.43,0,0,0,240,64C134,64,48,150,48,256s86,192,192,192A192.09,192.09,0,0,0,421.07,320"/><path fill="var(--text-secondary)" d="M464,97.42V208a16,16,0,0,1-16,16H337.42c-14.26,0-21.4-17.23-11.32-27.31L436.69,86.1C446.77,76,464,83.16,464,97.42Z"/></svg>
+                </div>
+            </span>
+            <h2 id="quote">
+                Describe a situation in which you helped someone else. How do you think it made them feel? How did it make you feel?
+            </h2>
+        </h2>
+        <span id="author" class="author"></span>
     </aside>
     <main>
         <div class="container" id="container">
             <div class="page" id="page">
-                <textarea class="textContent" id="leftTextArea"></textarea>
-                <textarea class="textContent" id="rightTextArea"></textarea>
+                <textarea class="textContent" id="textContent" placeholder="Write your story here..."></textarea>
             </div>
-            <svg xmlns="http://www.w3.org/2000/svg" class="line arrow left" id="arrow-left" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M5.854 4.646a.5.5 0 0 1 0 .708L3.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/><path fill-rule="evenodd" d="M2.5 8a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/></svg>
-            <input class="pageInput" type="text" id="pageInput" placeholder="1" />
-            <svg xmlns="http://www.w3.org/2000/svg" class="line arrow right" id="arrow-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M10.146 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 8l-2.647-2.646a.5.5 0 0 1 0-.708z"/><path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 8z"/></svg>
+            <div class="bottomBar">
+                <svg xmlns="http://www.w3.org/2000/svg" class="line arrow left" id="left" viewBox="0 0 512 512"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M244 400L100 256 244 112"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M120 256L412 256"/></svg>
+                <input class="pageInput" type="text" id="pageInput" maxlength="3"/>
+                <svg xmlns="http://www.w3.org/2000/svg" class="line arrow right" id="right" viewBox="0 0 512 512"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M268 112L412 256 268 400"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M392 256L100 256"/></svg>
+            </div>
         </div>
     </main>
+    <script src="scripts/write.js"></script>
+    <script src="scripts/darkMode.js"></script>
 </body>
 
 </html>
