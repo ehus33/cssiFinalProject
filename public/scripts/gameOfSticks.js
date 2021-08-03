@@ -1,72 +1,77 @@
-const onesticks = document.querySelector("#one");
-const twosticks= document.querySelector("#two");
-const threesticks = document.querySelector("#three");
-const reset = document.querySelector("#reset")
-let numberOfSticks = 10;
-turn = 1;
-function removeOne() {
-    numberOfSticks--;
-    var stickCount = document.querySelector("#stickCount");
-    var playerTurn = document.querySelector("#turnCount");
-    stickCount.innerHTML = "There are <b>" + numberOfSticks + "</b> sticks in the pile currently";
-    turn %= 2;
-    turn++;
-    if (numberOfSticks <= 0) {
-        stickCount.innerHTML = "Player " + turn + " wins!!!";
-    }
-    if (numberOfSticks > 0) {
-        turnCount.innerHTML = "Player " + turn + " it is your turn";
-    } else {
-        turnCount.innerHTML = "";
-        onesticks.innerHTML.disabled = "disabled";
-        twosticks.innerHTML.disabled = "disabled";
-        threesticks.innerHTML.disabled = disabled;
-    }
+const oneStickButton = document.getElementById("one");
+const twoStickButton = document.getElementById("two");
+const threeStickButton = document.getElementById("three");
 
-}
-function removeTwo() {
-    numberOfSticks -= 2;
-    var stickCount = document.querySelector("#stickCount");
-    var playerTurn = document.querySelector("#turnCount");
-    stickCount.innerHTML = "There are <b>" + numberOfSticks + "</b> sticks in the pile currently";
+const resetButton = document.getElementById("reset");
+const stickCount = document.getElementById("stickCount");
+const playerTurn = document.getElementById("turnCount");
+
+let numberOfSticks = 10;
+let turn = 1;
+
+function removeSticks(amount) {
+    numberOfSticks -= amount;
+    stickCount.innerHTML = numberOfSticks;
+
     turn %= 2;
     turn++;
+}
+
+function checkButtons() {
+    if (numberOfSticks < 1) {
+        oneStickButton.disabled = true
+    } else {
+        oneStickButton.disabled = false
+    }
+    if (numberOfSticks < 2) {
+        twoStickButton.disabled = true
+    } else {
+        twoStickButton.disabled = false
+    }
+    if (numberOfSticks < 3) {
+        threeStickButton.disabled = true
+    } else {
+        threeStickButton.disabled = false
+    }
+}
+
+function checkTurn() {
     if (numberOfSticks <= 0) {
-        stickCount.innerHTML = "Player " + turn + " wins!!!";
+        playerTurn.innerHTML = "Player " + turn + " wins!";
     }
     if (numberOfSticks > 0) {
-        turnCount.innerHTML = "Player " + turn + " it is your turn";
+        playerTurn.innerHTML = "Player " + turn + "'s Turn";
     } else {
-        turnCount.innerHTML = "";
+        stickCount.parentElement.hidden = true;
     }
+    checkButtons()
+}
+
+oneStickButton.onclick = function () {
+    removeSticks(1)
+    checkTurn()
+}
+
+twoStickButton.onclick = function () {
+    removeSticks(2)
+    checkTurn()
     
 }
-function removeThree() {
-    numberOfSticks -= 3;
-    var stickCount = document.querySelector("#stickCount");
-    var playerTurn = document.querySelector("#turnCount");
-    stickCount.innerHTML = "There are <b>" + numberOfSticks + "</b> sticks in the pile currently";
-    turn %= 2;
-    turn++;
-    if (numberOfSticks <= 0) {
-        stickCount.innerHTML = "Player " + turn + " wins!!!";
-    }
-    if (numberOfSticks > 0) {
-        turnCount.innerHTML = "Player " + turn + " it is your turn";
-    } else {
-        turnCount.innerHTML = "";
-    }
+
+threeStickButton.onclick = function () {
+    removeSticks(3)
+    checkTurn()
 }
+
 function resetGame() {
     numberOfSticks = 10;
-    var stickCount = document.querySelector("#stickCount");
-    var playerTurn = document.querySelector("#turnCount");
-    stickCount.innerHTML = "There are <b>" + numberOfSticks + "</b> sticks in the pile currently";
-    turn = 1;
-    if (numberOfSticks > 0) {
-        turnCount.innerHTML = "Player " + turn + " it is your turn";
-    }
+    checkButtons()
+    turn = 1
+    playerTurn.innerHTML = "Player " + turn + "'s Turn";
+    stickCount.innerHTML = numberOfSticks;
+    stickCount.parentElement.hidden = false;
 }
-function navigateHome() {
-    document.querySelector("#back")
+
+document.getElementById("back").onclick = function() {
+    window.location = 'activities.html';
 }

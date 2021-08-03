@@ -80,6 +80,11 @@ button {
     cursor: pointer;
 }
 
+button:disabled {
+    color: var(--text-secondary);
+    cursor: not-allowed;
+}
+
 button svg {
     vertical-align: middle;
     height: 1.2em;
