@@ -71,7 +71,3 @@ function resetGame() {
     stickCount.innerHTML = numberOfSticks;
     stickCount.parentElement.hidden = false;
 }
-
-document.getElementById("back").onclick = function() {
-    window.location = 'activities.html';
-}

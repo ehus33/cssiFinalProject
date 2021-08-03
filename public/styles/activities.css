@@ -57,3 +57,7 @@
     color: #000;
     border-radius: 140px;
 }
+
+.rounded {
+    border-radius: 16px;
+}
