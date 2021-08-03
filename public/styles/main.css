@@ -28,6 +28,10 @@ html.dark {
     }
 }
 
+* {
+    transition: background-color .2s linear;
+}
+
 html {
     font-family: 'Lato', sans-serif;
     background-color: var(--background-primary);
