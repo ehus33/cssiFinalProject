@@ -39,9 +39,16 @@ const journalElement = (id, name, color, height) => {
     const journal = document.createElement('div');
     journal.className = 'journal';
     journal.id = id;
-    journal.innerHTML += '<div class="bookmark-wrap"><div class="bookmark"></div></div>';
-    journal.style.backgroundColor = color;
 
+    const bookmarkWrap = document.createElement('div');
+    bookmarkWrap.className = 'bookmark-wrap';
+    const bookmark = document.createElement('div');
+    bookmark.className = 'bookmark';
+    bookmarkWrap.appendChild(bookmark);
+
+    journal.appendChild(bookmarkWrap);
+    journal.style.backgroundColor = color;
+    
     const tag = document.createElement('div');
     tag.className = 'tag';
 
@@ -72,6 +79,9 @@ const journalElement = (id, name, color, height) => {
     colorInput.className = 'colorInput';
     colorInput.type = 'color';
     colorInput.value = color;
+    colorInput.onclick = (event) => {
+        event.stopPropagation();
+    }
     colorInput.oninput = (event) => {
         saveColor(id, event.target.value);
     }
