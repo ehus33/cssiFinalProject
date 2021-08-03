@@ -25,10 +25,9 @@
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
 </head>
 
-
 <body>
     <script src="scripts/activities.js"></script>
-    <script src="scripts/activities.js"></script>
+    <script src="scripts/gameOfSticks.js"></script>
     <nav>
         <button class="nav-button" id="logout">
             <svg xmlns="http://www.w3.org/2000/svg" class="lockIcon line" viewBox="0 0 512 512">
@@ -59,28 +58,33 @@
             Change Appearance
         </button>
     </nav>
-
     <button id="back" onclick="window.location.href='activities.html'" style="border: none;
-        color: black;
-        padding: 16px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        transition-duration: 0.4s;
-        cursor: pointer;">Back</button>
-
+  color: black;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;">Back</button>
     <center>
-        <h1>Mouse Stress Reliever Game😀</h2>
-            <main>
-
-                <button style="font-size:20px;width:200px;height:200px;border-radius: 100px;background-color:red;"
-                    onClick="onClick()">Click Me!!!</button>
-                <h3>Clicks: <a id="clicks">0</a></h4>
-            </main>
+        <h1>Game of Sticks😝</h1>
+        <main>
+            <button id="one" style="font-size:16px;width:200;height:60;background-color:red;" onclick=removeOne()>1
+                stick</button>
+            <button id="two" style="font-size:16px;width:200;height:60;background-color:#89CFF0;" onclick=removeTwo()>2
+                stick</button>
+            <button id="three" style="font-size:16px;width:200;height:60;background-color:greenyellow;"
+                onclick=removeThree()>3
+                stick</button>
+            <p id="stickCount">There are <b>10</b> sticks in the pile currently</p>
+            <p id="turnCount">Player 1 it is your turn</p>
+            <button id="reset"
+                style="font-size:16px;width:100px;height:100px;border-radius:50px;background-color:yellow;"
+                onclick="resetGame()">Reset Game</button>
+        </main>
     </center>
-
 </body>
 
 </html>
