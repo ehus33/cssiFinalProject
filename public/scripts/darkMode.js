@@ -31,3 +31,15 @@ function toggleThemeColorMeta() {
       document.querySelector('meta[media="(prefers-color-scheme: light)"]').setAttribute("content", '#F2F2F2')
     }
 }
+
+const restoreMode = () => {
+  if (document.cookie.split(';').some((item) => item.trim().startsWith('colorToggle='))) {
+    var cookieValue = document.cookie.split('; ').find(row => row.startsWith('colorToggle=')).split('=')[1];
+    if (cookieValue == 1) {
+      document.documentElement.classList.add('dark')
+      toggleThemeColorMeta()
+    }
+  }
+}
+
+window.addEventListener('load', restoreMode)
