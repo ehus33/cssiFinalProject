@@ -119,3 +119,10 @@ const saveColor = (id, color) => {
     firebase.database().ref(`users/${userId}/journals/${id}`).update({color: color});
 }
 
+if ((hours = new Date().getHours()) < 12) {
+    document.getElementById('time').innerHTML = 'morning';
+} else if (hours < 18) {
+    document.getElementById('time').innerHTML = 'afternoon';
+} else {
+    document.getElementById('time').innerHTML = 'evening';
+}

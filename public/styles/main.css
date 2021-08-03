@@ -3,6 +3,9 @@
     --background-secondary: #F2F2F2;
 
     --text-primary: #000;
+
+    --line: #b9b9b9;
+    --paper: #FAFAFA;
 }
 
 html.dark {
@@ -10,6 +13,9 @@ html.dark {
     --background-secondary: #1A1A1A;
 
     --text-primary: #fff;
+
+    --line: #4D4D4D;
+    --paper: #1F1F1F;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,6 +24,9 @@ html.dark {
         --background-secondary: #1A1A1A;
     
         --text-primary: #fff;
+
+        --line: #4D4D4D;
+        --paper: #1F1F1F;
     }
 
     html.dark {
@@ -25,6 +34,9 @@ html.dark {
         --background-secondary: #F2F2F2;
     
         --text-primary: #000;
+
+        --line: #b9b9b9;
+        --paper: #FAFAFA;
     }
 }
 
@@ -114,4 +126,9 @@ nav {
     height: 22px;
     width: 22px;
     padding: 1px;
+}
+
+.backIcon {
+    height: 24px;
+    width: 24px;
 }
