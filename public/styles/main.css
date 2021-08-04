@@ -72,12 +72,13 @@ h4 {
 button {
     background-color: var(--background-secondary);
     color: var(--text-primary);
-    border: none;
-    padding: 16px 32px;
+    padding: 14px 30px;
     font-size: 24px;
     border-radius: 8px;
     font-family: 'Lato', sans-serif;
     cursor: pointer;
+    transition: background-color .15s linear;
+    border: 3px solid var(--background-secondary);
 }
 
 button:disabled {
@@ -106,7 +107,7 @@ nav {
 }
 
 .nav-button {
-    padding: 12px;
+    padding: 9px;
     margin-right: 16px;
     border-radius: 100px;
     box-sizing: content-box;
@@ -142,4 +143,8 @@ nav {
 .backIcon {
     height: 24px;
     width: 24px;
+}
+
+button:hover, button:focus, button:active {
+    background-color: var(--background-primary);
 }

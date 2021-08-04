@@ -73,6 +73,11 @@ h2 {
     background-color: var(--background-secondary);
     outline: none;
     color: var(--text-primary);
+    transition: transform .15s ease-in-out;
+}
+
+.pageInput:hover {
+    transform: scale(1.03);
 }
 
 .pageInput::placeholder, .textContent::placeholder {
@@ -83,6 +88,16 @@ h2 {
     height: 30px;
     filter: drop-shadow(0px 0px 16px rgba(0, 0, 0, .5));
     cursor: pointer;
+    transform: scale(1);
+    transition: transform .1s ease-in-out;
+}
+
+.arrow:hover {
+    transform: scale(1.05)
+}
+
+.arrow.disabled:hover {
+    transform: scale(1);
 }
 
 .arrow path {
@@ -109,11 +124,18 @@ h2 {
 }
 
 .reloadIcon {
-    padding: 9px 4px 4px 4px;
+    padding: 4px;
     height: 22px;
+    margin-top: 3px;
+    border-radius: 22px;
+}
+
+.reloadIcon:hover {
+    background-color: var(--background-secondary);
 }
 
 .author {
     font-size: 1.25rem;
     color: var(--text-secondary);
 }
+
