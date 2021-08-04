@@ -1,0 +1,515 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Journal</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/activities.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display&display=swap" rel="stylesheet">
+
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F2F2F2">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1A1A1A">
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/8.3.1/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/8.3.1/firebase-auth.js"></script>
+    <script defer src="/__/firebase/8.3.1/firebase-database.js"></script>
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    <nav>
+        <button class="nav-button" id="back">
+            <svg xmlns="http://www.w3.org/2000/svg" class="line backIcon" viewBox="0 0 512 512">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M244 400L100 256 244 112" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M120 256L412 256" /></svg>
+            Back
+        </button>
+        <button class="nav-button" id="darkModeToggle">
+            <svg xmlns="http://www.w3.org/2000/svg" class="darkModeIcon" viewBox="0 0 512 512">
+                <path
+                    d="M256 118a22 22 0 01-22-22V48a22 22 0 0144 0V96A22 22 0 01256 118zM256 486a22 22 0 01-22-22V416a22 22 0 0144 0v48A22 22 0 01256 486zM369.14 164.86a22 22 0 01-15.56-37.55l33.94-33.94a22 22 0 0131.11 31.11l-33.94 33.94A21.93 21.93 0 01369.14 164.86zM108.92 425.08a22 22 0 01-15.55-37.56l33.94-33.94a22 22 0 1131.11 31.11l-33.94 33.94A21.94 21.94 0 01108.92 425.08zM464 278H416a22 22 0 010-44h48a22 22 0 010 44zM96 278H48a22 22 0 010-44H96a22 22 0 010 44zM403.08 425.08a21.94 21.94 0 01-15.56-6.45l-33.94-33.94a22 22 0 0131.11-31.11l33.94 33.94a22 22 0 01-15.55 37.56zM142.86 164.86a21.89 21.89 0 01-15.55-6.44L93.37 124.48a22 22 0 0131.11-31.11l33.94 33.94a22 22 0 01-15.56 37.55zM256 358A102 102 0 11358 256 102.12 102.12 0 01256 358z" />
+            </svg>
+            Change Appearance
+        </button>
+    </nav>
+    <style>
+        @import "compass/css3";
+
+        @font-face {
+            font-family: 'haymakerregular';
+            src: url("https://dl.dropboxusercontent.com/u/6152966/fonts/haymaker/haymaker-webfont.eot");
+            src: url("https://dl.dropboxusercontent.com/u/6152966/fonts/haymaker/haymaker-webfont.eot?#iefix") format("embedded-opentype"), url("https://dl.dropboxusercontent.com/u/6152966/fonts/haymaker/haymaker-webfont.woff") format("woff"), url("https://dl.dropboxusercontent.com/u/6152966/fonts/haymaker/haymaker-webfont.ttf") format("truetype"), url("https://dl.dropboxusercontent.com/u/6152966/fonts/haymaker/haymaker-webfont.svg#haymakerregular") format("svg");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'mission_scriptregular';
+            src: url("https://dl.dropboxusercontent.com/u/6152966/fonts/mission/mission-script-webfont.eot");
+            src: url("https://dl.dropboxusercontent.com/u/6152966/fonts/mission/mission-script-webfont.eot?#iefix") format("embedded-opentype"), url("https://dl.dropboxusercontent.com/u/6152966/fonts/mission/mission-script-webfont.woff") format("woff"), url("../fonts/mission/mission-script-webfont.ttf") format("truetype"), url("https://dl.dropboxusercontent.com/u/6152966/fonts/mission/mission-script-webfont.svg#mission_scriptregular") format("svg");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'klinic_slablight';
+            src: url("https://dl.dropboxusercontent.com/u/6152966/fonts/klinics/klinicslablight-webfont.eot");
+            src: url("https://dl.dropboxusercontent.com/u/6152966/fonts/klinics/klinicslablight-webfont.eot?#iefix") format("embedded-opentype"), url("https://dl.dropboxusercontent.com/u/6152966/fonts/klinics/klinicslablight-webfont.woff") format("woff"), url("https://dl.dropboxusercontent.com/u/6152966/fonts/klinics/klinicslablight-webfont.ttf") format("truetype"), url("https://dl.dropboxusercontent.com/u/6152966/fonts/klinics/klinicslablight-webfont.svg#klinic_slablight") format("svg");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            background-color: white;
+            color: #777777;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            font-size: 1.6rem;
+        }
+
+        .main {
+            background-color: white;
+        }
+
+        .header {
+            background-color: #efefef;
+            border: 1px solid #efefef;
+            border-bottom: 2px solid gainsboro;
+        }
+
+        .header h1 {
+            color: black;
+        }
+
+        .shoot {
+            color: #efefef;
+        }
+
+        .shoot:hover {
+            color: black;
+        }
+
+        h1 span.rock {
+            font-family: "mission_scriptregular", Georgia, Times, "Times New Roman", serif;
+            font-size: 48px;
+            font-size: 4.8rem;
+        }
+
+        h1 span.paper {
+            font-family: "mission_scriptregular", Georgia, Times, "Times New Roman", serif;
+            font-size: 48px;
+            font-size: 4.8rem;
+        }
+
+        h1 span.scissors {
+            font-family: "mission_scriptregular", Georgia, Times, "Times New Roman", serif;
+            font-size: 48px;
+            font-size: 4.8rem;
+        }
+
+        .footer {
+            background-color: #efefef;
+            color: #777777;
+            border-top: 2px solid gainsboro;
+            border-bottom: 2px solid gainsboro;
+        }
+
+        .footer h2 {
+            font-size: 16px;
+            font-size: 1.6rem;
+            font-weight: 200;
+            font-style: italic;
+        }
+
+        .footer address {
+            font-size: 16px;
+            font-size: 1.6rem;
+            font-style: normal;
+        }
+
+        button.play {
+            border-radius: 10px;
+            border: 4px solid white;
+        }
+
+        button.play.rock {
+            background: #efefef url("https://dl.dropboxusercontent.com/u/6152966/rock.png") no-repeat;
+            background-size: 175px 175px;
+        }
+
+        button.play.paper {
+            background: #efefef url("https://dl.dropboxusercontent.com/u/6152966/paper.png") no-repeat;
+            background-size: 175px 175px;
+        }
+
+        button.play.scissors {
+            background: #efefef url("https://dl.dropboxusercontent.com/u/6152966/scissors.png") no-repeat;
+            background-size: 175px 175px;
+        }
+
+        button.play:hover {
+            border: 4px solid black;
+        }
+
+        button#reset {
+            font-size: 12px;
+            font-size: 1.2rem;
+            color: black;
+            background-color: gainsboro;
+            border-radius: 10px;
+        }
+
+        h2#results {
+            color: #444444;
+            font-size: 24px;
+            font-size: 2.4rem;
+        }
+
+        p {
+            font-size: 18px;
+            font-size: 1.8rem;
+        }
+
+        .scorebox {
+            background-color: #efefef;
+            border: 4px solid #efefef;
+            border-radius: 10px;
+        }
+
+        .scorebox h2 {
+            color: black;
+            font-weight: 600;
+            font-size: 24px;
+            font-size: 2.4rem;
+        }
+
+        span#loses,
+        span#wins {
+            font-size: 48px;
+            font-size: 4.8rem;
+            color: black;
+            font-family: "haymakerregular", Helvetica, Arial, sans-serif;
+        }
+
+        .score-divider span {
+            font-size: 40px;
+            font-size: 4rem;
+            color: black;
+            font-weight: 200;
+        }
+
+        div.score-num,
+        div.score-divider {
+            font-size: 18px;
+            font-size: 1.8rem;
+            color: #777777;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        html {
+            font-size: 62.5%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            position: relative;
+            width: 100%;
+            height: 110px;
+            height: 11rem;
+        }
+
+        .header h1 {
+            margin: 20px auto;
+        }
+
+        .main {
+            width: 100%;
+            min-height: 350px;
+            min-height: 35rem;
+            padding-top: 80px;
+        }
+
+        .footer {
+            width: 100%;
+            min-height: 100px;
+            min-height: 10rem;
+            height: auto;
+            padding: 20px 0;
+        }
+
+        .footer h2 {
+            margin: 0;
+            padding: 0 0 5px 0;
+        }
+
+        .container {
+            position: relative;
+            width: 960px;
+            width: 96rem;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .content {
+            width: 630px;
+            width: 63rem;
+            float: left;
+        }
+
+        .aside {
+            width: 330px;
+            width: 33rem;
+            float: right;
+        }
+
+        .scorebox {
+            box-sizing: border-box;
+            width: 195px;
+            width: 19.5rem;
+            height: 175px;
+            height: 17.5rem;
+            padding: 5px;
+            margin: 0 auto 15px auto;
+        }
+
+        .scorebox h2 {
+            margin: 15px 0 10px 10px;
+        }
+
+        .score-num,
+        .score-divider {
+            float: left;
+        }
+
+        .score-num {
+            width: 40%;
+        }
+
+        .score-divider {
+            width: 20%;
+        }
+
+        button .play {
+            box-sizing: border-box;
+            display: inline-block;
+            width: 175px;
+            width: 17.5rem;
+            height: 175px;
+            height: 17.5rem;
+            padding: 5px;
+            margin-right: 30px;
+        }
+
+        button #reset {
+            width: 240px;
+            height: 70px;
+            text-align:center;
+            line-height: 1em;
+            float: right;
+            margin-right: 105px;
+            border: 0;
+        }
+
+        .header {
+            position: relative;
+            width: 100%;
+            height: 110px;
+            height: 11rem;
+        }
+
+        .header h1 {
+            margin: 20px auto;
+        }
+
+        .footer {
+            width: 100%;
+            min-height: 100px;
+            min-height: 10rem;
+            height: auto;
+            padding: 20px 0;
+        }
+
+        .footer h2 {
+            margin: 0;
+            padding: 0 0 5px 0;
+        }
+
+        button.play {
+            box-sizing: border-box;
+            display: inline-block;
+            width: 175px;
+            width: 17.5rem;
+            height: 175px;
+            height: 17.5rem;
+            padding: 5px;
+            margin-right: 30px;
+        }
+
+        button#reset {
+            width: 240px;
+            height: 70px;
+            line-height: 1em;
+            float: right;
+            margin-right: 105px;
+            border: 0;
+        }
+
+        .scorebox {
+            box-sizing: border-box;
+            width: 195px;
+            width: 19.5rem;
+            height: 175px;
+            height: 17.5rem;
+            padding: 5px;
+            margin: 0 auto 15px auto;
+        }
+
+        .scorebox h2 {
+            margin: 15px 0 10px 10px;
+        }
+
+        div.score-num,
+        div.score-divider {
+            float: left;
+        }
+
+        div.score-num {
+            width: 40%;
+        }
+
+        div.score-divider {
+            width: 20%;
+        }
+    </style>
+    <script>
+        var loses = 0;
+        var wins = 0;
+
+        var play = function (userChoice) {
+
+            document.getElementById("player").innerHTML = "";
+            document.getElementById("opponent").innerHTML = "";
+            document.getElementById("results").innerHTML = "";
+
+
+            if (userChoice == "rock" || userChoice == "paper" || userChoice == "scissors") {
+                document.getElementById("player").innerHTML = 'You chose' + ' ' + userChoice + '.';
+            } else if (userChoice == "rope") {
+                document.getElementById("player").innerHTML = 'You chose' + ' ' + userChoice + '. <br />Well aren\'t you a smarty pants.';
+            } else {
+                document.getElementById("player").innerHTML = "That is not a valid choice, try again.";
+
+                return false;
+            }
+
+            var computerChoice = Math.random();
+            if (computerChoice < 0.34) {
+                computerChoice = "rock";
+            } else if (computerChoice <= 0.67) {
+                computerChoice = "paper";
+            } else {
+                computerChoice = "scissors";
+            }
+
+            document.getElementById("opponent").innerHTML = ' Your opponent chose' + ' ' + computerChoice + '.';
+
+            var compare = function (choice1, choice2) {
+                if (choice1 == choice2) {
+                    return "The result is a tie!";
+                } else if (choice1 == "rock") {
+                    if (choice2 == "scissors") {
+                        wins++;
+                        return "Your rock smashed the scissors.";
+                    } else {
+                        loses++;
+                        return "The rock got constrained by the paper";
+                    }
+                } else if (choice1 == "paper") {
+                    if (choice2 == "rock") {
+                        wins++;
+                        return "Paper wrapped the Rock";
+                    } else {
+                        loses++;
+                        return "Sorry. You were Chopped in Half by Scissors";
+                    }
+                } else if (choice1 == "scissors") {
+                    if (choice2 == "rock") {
+                        loses++;
+                        return "Sorry. Rock Broke the Scissors";
+                    } else {
+                        wins++;
+                        return "Your Scissors Sliced the Paper";
+                    }
+                } else if (choice1 == "rope") {
+                    wins++;
+                    return "rope FTW";
+                } else {
+                    return "error. bummer dude. game over. no dice.";
+                }
+            };
+
+            var winner = compare(userChoice, computerChoice);
+            document.getElementById("results").innerHTML = winner;
+            document.getElementById("wins").innerHTML = wins;
+            document.getElementById("loses").innerHTML = loses;
+
+            if (wins > 99 || loses > 99) {
+                document.getElementById("wins").style.fontSize = "44";
+                document.getElementById("loses").style.fontSize = "44";
+            }
+            if (wins > 999) {
+                alert("You reached the max score of 999. <br />You are out of plays.");
+            }
+            if (loses > 999) {
+                alert("Your opponent reached the max score of 999. <br />You are out of plays.");
+            }
+        };
+
+        var reset = function () {
+            loses = 0;
+            wins = 0;
+            document.getElementById("wins").innerHTML = wins;
+            document.getElementById("loses").innerHTML = loses;
+        };
+    </script>
+</head>
+
+
+    
+        <h1>Rock, Paper Scissors</h1>
+        <section class="content">
+            <center >
+            <button class="play rock" type="button" onclick="play('rock')">Rock</button>
+            <button class="play paper" type="button" onclick="play('paper')">Paper</button>
+            <button class="play scissors" type="button" onclick="play('scissors')">Scissors</button>
+            <div style="clear:both;"></div>
+            <p><span id="player"></span> <span id="opponent"></span></p>
+            <h2 id="results"></h2>
+            </center>
+        </section>
+        <aside class="aside">
+            <div class="scorebox">
+                <h2>Score</h2>
+                <div class="score-num"><span id="wins">0</span> <br />wins</div>
+                <div class="score-divider"><span>-</span></div>
+                <div class="score-num"><span id="loses">0</span> <br />loses</div>
+            </div>
+            <button type="reset" id="reset" onclick="reset()" height=50 width=200>Reset scores</button>
+        </aside>
+    </div>
+    <script src="scripts/darkMode.js"></script>
+    <script src="scripts/activitiesBack.js"></script>
+    <script src="scripts/gameOfSticks.js"></script>    
+    
+
+</html>
