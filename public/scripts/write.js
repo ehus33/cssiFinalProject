@@ -30,6 +30,7 @@ const loadPageContent = () => {
         }
         document.getElementById('container').style.backgroundColor = journalData.color;
         if (journalData.currentPage) {
+            cleanJournal()
             currentPage = journalData.currentPage;
             loadPage(currentPage);
         } else {
@@ -38,6 +39,7 @@ const loadPageContent = () => {
         }
         pageInput.value = currentPage
     }).catch(error => {
+        console.log(error)
         if (error.message === 'No Journal Found') {
             document.getElementById('container').style.display = 'none';
             document.getElementById('quoteGroup').innerHTML = 'No journal found';
@@ -132,7 +134,6 @@ document.getElementById('right').onclick = () => {
 async function randomQuote() {
     const response = await fetch('https://api.quotable.io/random')
     const data = await response.json()
-    console.log(data)
     document.getElementById('quote').innerHTML = data.content
     document.getElementById('author').innerHTML = '– ' + data.author
 }
@@ -141,4 +142,22 @@ randomQuote()
 
 document.getElementById('reload').onclick = () => {
     randomQuote()
+}
+
+const cleanJournal = () => {
+    pagesList = []
+    for (let pageNum in journalData.pages) {
+        if (journalData.pages[pageNum].content !== '' || pageNum === journalData.numPages.toString() || pageNum === journalData.currentPage.toString()) {
+            pagesList.push(journalData.pages[pageNum]);
+            if (pageNum == journalData.currentPage) {
+                journalData.currentPage = pagesList.length;
+            }
+        }
+    }
+    const pagesDictionary = {}
+    for (let i = 0; i < pagesList.length; i++) {
+        pagesDictionary[i + 1] = pagesList[i];
+    }
+    journalData.pages = pagesDictionary;
+    firebase.database().ref('users/' + userId + '/journals/' + journalID +'/pages').set(pagesDictionary);
 }
