@@ -4,16 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mental Health Journal – Journals</title>
+    <title>Mental Health Journal – Clock</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="styles/main.css">
-    <!---<link rel="stylesheet" href="styles/journals.css">--->
+    <link rel="stylesheet" href="styles/activities.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display&display=swap" rel="stylesheet">
 
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F2F2F2">
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1A1A1A">
@@ -28,26 +27,9 @@
 
 <body>
     <nav>
-        <button class="nav-button" id="logout">
-            <svg xmlns="http://www.w3.org/2000/svg" class="lockIcon line" viewBox="0 0 512 512">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="40"
-                    d="M336,208V113a80,80,0,0,0-160,0v95" />
-                <rect width="320" height="272" x="96" y="208" stroke-linecap="round" stroke-linejoin="round"
-                    stroke-width="40" rx="48" ry="48" /></svg>
-            Logout
-        </button>
-        <button class="nav-button" id="activities">
-            <svg xmlns="http://www.w3.org/2000/svg" class="activitiesIcon line" viewBox="0 0 512 512">
-                <path stroke-miterlimit="10" stroke-width="32"
-                    d="M467.51,248.83c-18.4-83.18-45.69-136.24-89.43-149.17A91.5,91.5,0,0,0,352,96c-26.89,0-48.11,16-96,16s-69.15-16-96-16a99.09,99.09,0,0,0-27.2,3.66C89,112.59,61.94,165.7,43.33,248.83c-19,84.91-15.56,152,21.58,164.88,26,9,49.25-9.61,71.27-37,25-31.2,55.79-40.8,119.82-40.8s93.62,9.6,118.66,40.8c22,27.41,46.11,45.79,71.42,37.16C487.1,399.86,486.52,334.74,467.51,248.83Z" />
-                <circle cx="292" cy="224" r="20" />
-                <circle cx="336" cy="268" r="20"></circle>
-                <circle cx="336" cy="180" r="20" />
-                <circle cx="380" cy="224" r="20" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M160 176L160 272" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M208 224L112 224" />
-            </svg>
-
+        <button class="nav-button" id="back">
+            <svg xmlns="http://www.w3.org/2000/svg" class="line backIcon" viewBox="0 0 512 512"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M244 400L100 256 244 112"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M120 256L412 256"/></svg>
+            Back
         </button>
         <button class="nav-button" id="darkModeToggle">
             <svg xmlns="http://www.w3.org/2000/svg" class="darkModeIcon" viewBox="0 0 512 512">
@@ -57,112 +39,96 @@
             Change Appearance
         </button>
     </nav>
-    <div>
-        <button id="back" onclick="window.location.href='activities.html'" style="border: none;
-  color: black;
-  padding: 16px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;">Back</button>
+    <div class="center">
+        <h1>Analog Clock</h1>
+
+        <canvas id="canvas" width="400" height="400" style="background-color:var(--background-primary)">
+        </canvas>
+
+        <script>
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+            var radius = canvas.height / 2;
+            ctx.translate(radius, radius);
+            radius = radius * 0.90
+            setInterval(drawClock, 1000);
+
+            function drawClock() {
+                drawFace(ctx, radius);
+                drawNumbers(ctx, radius);
+                drawTime(ctx, radius);
+            }
+
+            function drawFace(ctx, radius) {
+                var grad;
+                ctx.beginPath();
+                ctx.arc(0, 0, radius, 0, 2 * Math.PI);
+                ctx.fillStyle = 'white';
+                ctx.fill();
+                grad = ctx.createRadialGradient(0, 0, radius * 0.95, 0, 0, radius * 1.05);
+                grad.addColorStop(0, '#333');
+                grad.addColorStop(0.5, 'white');
+                grad.addColorStop(1, '#333');
+                ctx.strokeStyle = grad;
+                ctx.lineWidth = radius * 0.1;
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.arc(0, 0, radius * 0.1, 0, 2 * Math.PI);
+                ctx.fillStyle = '#333';
+                ctx.fill();
+            }
+
+            function drawNumbers(ctx, radius) {
+                var ang;
+                var num;
+                ctx.font = radius * 0.15 + "px arial";
+                ctx.textBaseline = "middle";
+                ctx.textAlign = "center";
+                for (num = 1; num < 13; num++) {
+                    ang = num * Math.PI / 6;
+                    ctx.rotate(ang);
+                    ctx.translate(0, -radius * 0.85);
+                    ctx.rotate(-ang);
+                    ctx.fillText(num.toString(), 0, 0);
+                    ctx.rotate(ang);
+                    ctx.translate(0, radius * 0.85);
+                    ctx.rotate(-ang);
+                }
+            }
+
+            function drawTime(ctx, radius) {
+                var now = new Date();
+                var hour = now.getHours();
+                var minute = now.getMinutes();
+                var second = now.getSeconds();
+                //hour
+                hour = hour % 12;
+                hour = (hour * Math.PI / 6) +
+                    (minute * Math.PI / (6 * 60)) +
+                    (second * Math.PI / (360 * 60));
+                drawHand(ctx, hour, radius * 0.5, radius * 0.07);
+                //minute
+                minute = (minute * Math.PI / 30) + (second * Math.PI / (30 * 60));
+                drawHand(ctx, minute, radius * 0.8, radius * 0.07);
+                // second
+                second = (second * Math.PI / 30);
+                drawHand(ctx, second, radius * 0.9, radius * 0.02);
+            }
+
+            function drawHand(ctx, pos, length, width) {
+                ctx.beginPath();
+                ctx.lineWidth = width;
+                ctx.lineCap = "round";
+                ctx.moveTo(0, 0);
+                ctx.rotate(pos);
+                ctx.lineTo(0, -length);
+                ctx.stroke();
+                ctx.rotate(-pos);
+            }
+        </script>
     </div>
-    <div>
-        <center>
-            <h1>Analog Clock</h1>
-
-
-            <canvas id="canvas" width="400" height="400" style="background-color:white">
-            </canvas>
-
-            <script>
-                var canvas = document.getElementById("canvas");
-                var ctx = canvas.getContext("2d");
-                var radius = canvas.height / 2;
-                ctx.translate(radius, radius);
-                radius = radius * 0.90
-                setInterval(drawClock, 1000);
-
-                function drawClock() {
-                    drawFace(ctx, radius);
-                    drawNumbers(ctx, radius);
-                    drawTime(ctx, radius);
-                }
-
-                function drawFace(ctx, radius) {
-                    var grad;
-                    ctx.beginPath();
-                    ctx.arc(0, 0, radius, 0, 2 * Math.PI);
-                    ctx.fillStyle = 'white';
-                    ctx.fill();
-                    grad = ctx.createRadialGradient(0, 0, radius * 0.95, 0, 0, radius * 1.05);
-                    grad.addColorStop(0, '#333');
-                    grad.addColorStop(0.5, 'white');
-                    grad.addColorStop(1, '#333');
-                    ctx.strokeStyle = grad;
-                    ctx.lineWidth = radius * 0.1;
-                    ctx.stroke();
-                    ctx.beginPath();
-                    ctx.arc(0, 0, radius * 0.1, 0, 2 * Math.PI);
-                    ctx.fillStyle = '#333';
-                    ctx.fill();
-                }
-
-                function drawNumbers(ctx, radius) {
-                    var ang;
-                    var num;
-                    ctx.font = radius * 0.15 + "px arial";
-                    ctx.textBaseline = "middle";
-                    ctx.textAlign = "center";
-                    for (num = 1; num < 13; num++) {
-                        ang = num * Math.PI / 6;
-                        ctx.rotate(ang);
-                        ctx.translate(0, -radius * 0.85);
-                        ctx.rotate(-ang);
-                        ctx.fillText(num.toString(), 0, 0);
-                        ctx.rotate(ang);
-                        ctx.translate(0, radius * 0.85);
-                        ctx.rotate(-ang);
-                    }
-                }
-
-                function drawTime(ctx, radius) {
-                    var now = new Date();
-                    var hour = now.getHours();
-                    var minute = now.getMinutes();
-                    var second = now.getSeconds();
-                    //hour
-                    hour = hour % 12;
-                    hour = (hour * Math.PI / 6) +
-                        (minute * Math.PI / (6 * 60)) +
-                        (second * Math.PI / (360 * 60));
-                    drawHand(ctx, hour, radius * 0.5, radius * 0.07);
-                    //minute
-                    minute = (minute * Math.PI / 30) + (second * Math.PI / (30 * 60));
-                    drawHand(ctx, minute, radius * 0.8, radius * 0.07);
-                    // second
-                    second = (second * Math.PI / 30);
-                    drawHand(ctx, second, radius * 0.9, radius * 0.02);
-                }
-
-                function drawHand(ctx, pos, length, width) {
-                    ctx.beginPath();
-                    ctx.lineWidth = width;
-                    ctx.lineCap = "round";
-                    ctx.moveTo(0, 0);
-                    ctx.rotate(pos);
-                    ctx.lineTo(0, -length);
-                    ctx.stroke();
-                    ctx.rotate(-pos);
-                }
-            </script>
-
-
-
-        </center>
-    </div>
+    <script src="scripts/activitiesBack.js"></script>
+    <script src="scripts/darkMode.js"></script>
 </body>
 
 </html>
