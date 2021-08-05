@@ -80,3 +80,22 @@
 .rounded {
     border-radius: 16px;
 }
+
+.score {
+    display: inline-block;
+}
+
+.divider {
+    vertical-align: text-bottom;
+    line-height: 40px;
+    margin: 0 4px;
+}
+
+.scorebox {
+    margin-top: 32px;
+}
+
+.reset {
+    display: block;
+    margin: 16px auto;
+}
