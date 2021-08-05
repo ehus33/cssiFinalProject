@@ -11,8 +11,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display&display=swap" rel="stylesheet">
 
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F2F2F2">
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1A1A1A">
@@ -28,9 +27,7 @@
 <body>
     <nav>
         <button class="nav-button" id="back">
-            <svg xmlns="http://www.w3.org/2000/svg" class="line backIcon" viewBox="0 0 512 512">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M244 400L100 256 244 112" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M120 256L412 256" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="line backIcon" viewBox="0 0 512 512"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M244 400L100 256 244 112"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M120 256L412 256"/></svg>
             Back
         </button>
         <button class="nav-button" id="darkModeToggle">
@@ -43,41 +40,8 @@
     </nav>
     <div class="center">
         <h1>Countdown to Christmas</h1>
-        </center>
-        <p id="demo"></p>
-
-        <script>
-            // Set the date we're counting down to
-            var countDownDate = new Date("December 25, 2021 0:00:00").getTime();
-
-            // Update the count down every 1 second
-            var x = setInterval(function () {
-                // Get today's date and time
-                var now = new Date().getTime();
-                // Find the distance between now and the count down date
-                var distance = countDownDate - now;
-                // Time calculations for days, hours, minutes and seconds
-                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                var milliseconds = Math.floor(distance % 1000)
-
-                // Output the result in an element with id="demo"
-                document.getElementById("demo").innerHTML = `<center><h2 style='font-size:30;'>` + days + "d " + hours + "h "
-                    + minutes + "m " + seconds + "s " + milliseconds + `ms </h2></center>`;
-
-                // If the count down is over, write some text 
-                if (distance < 0) {
-                    clearInterval(x);
-                    document.getElementById("demo").innerHTML = "EXPIRED";
-                }
-            }, 1000);
-        </script>
-        <center>
-            <h2 id="countdown"></h2>
-            <img src="https://freesvg.org/img/1545131690.png" alt="Santa Clipart">
-        </center>
+        <h2 id="countdown"></h2>
+        <img src="https://freesvg.org/img/1545131690.png" alt="Santa Clipart">
     </div>
     <script src="scripts/countDown.js"></script>
     <script src="scripts/activitiesBack.js"></script>

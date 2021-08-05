@@ -75,6 +75,15 @@ const journalElement = (id, name, color, height) => {
     }
     journal.appendChild(tag);
 
+    const deleteButton = document.createElement('div');
+    deleteButton.className = 'delete';
+    deleteButton.onclick = (event) => {
+        event.stopPropagation();
+        deleteJournal(id);
+    }
+    deleteButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="deleteIcon" viewBox="0 0 512 512"><path d="M289.94,256l95-95A24,24,0,0,0,351,127l-95,95-95-95A24,24,0,0,0,127,161l95,95-95,95A24,24,0,1,0,161,385l95-95,95,95A24,24,0,0,0,385,351Z"/></svg>'
+    journal.appendChild(deleteButton);
+
     const colorInput = document.createElement('input');
     colorInput.className = 'colorInput';
     colorInput.type = 'color';
@@ -125,4 +134,9 @@ if ((hours = new Date().getHours()) < 12) {
     document.getElementById('time').innerHTML = 'afternoon';
 } else {
     document.getElementById('time').innerHTML = 'evening';
+}
+
+const deleteJournal = (id) => {
+    firebase.database().ref(`users/${userId}/journals/${id}`).remove();
+    document.getElementById(id).remove();
 }
