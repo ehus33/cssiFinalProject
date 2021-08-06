@@ -9,7 +9,6 @@ window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",
   e => e.matches && darkModeChange()
 )
 
-document.getElementById('darkModeToggle').addEventListener('click', darkModeClassToggle)
 
 function darkModeClassToggle() {
     document.documentElement.classList.toggle('dark')
@@ -42,4 +41,7 @@ const restoreMode = () => {
   }
 }
 
-window.addEventListener('load', restoreMode)
+window.addEventListener('load', () => {
+  restoreMode()
+  document.getElementById('darkModeToggle').addEventListener('click', darkModeClassToggle)
+})
